@@ -1,0 +1,13 @@
+1 - Realizar a somatória das idades e dividir pela quantidade de ingressos vendidos para cálculo da média das idades.
+
+2 - Utilizar um while loop != 0 para a checagem de disponibilidade de ingressos.
+
+3 - Menu com nível de autorização, para indicar se é um vendedor comissionado (bio, enf ou outro), um usuário anônimo para fazer uma simples compra de ingresso ou para gerir as informações internas do sistema (ingressos totais, valores, etc)
+
+4 - Conforme o nível de autorização será solicitado uma senha específica, que ao não ser confirmada, exibirá uma mensagem de erro.
+
+5 - Opções para voltar a página anterior.
+
+6 - Comprovação de meia ou documentação a partir de um código aleatório de 08 dígitos.
+
+7
