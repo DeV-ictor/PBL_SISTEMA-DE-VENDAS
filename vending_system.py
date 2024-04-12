@@ -37,6 +37,8 @@ promotional_password = 'ecomp20241'
 
 option = '0'
 
+age = 0
+
 #INICIALIZAÇÃO DO SISTEMA
 
 
@@ -128,16 +130,7 @@ while option != '4':
 
                 print('=' * 40, '\n')
 
-                if num_tickets_full > num_tickets_half_old and num_tickets_full > num_tickets_half_student and num_tickets_full > num_promotional_tickets and num_tickets_full > num_tickets_vip:
-                    print(f'O ingresso mais vendido foi o Ingresso tipo Inteira, com {num_tickets_full} vendidos!')
-                elif num_tickets_half_old > num_tickets_full and num_tickets_half_old > num_tickets_half_student and num_tickets_half_old > num_promotional_tickets and num_tickets_half_old > num_tickets_vip:
-                    print(f'O ingresso mais vendido foi o Ingresso tipo Estudante, com {num_tickets_half_student} vendidos!')
-                elif num_tickets_half_student > num_tickets_half_old and num_tickets_half_student > num_tickets_full and num_tickets_half_student > num_promotional_tickets and num_tickets_half_student > num_tickets_vip:
-                    print(f'O ingresso mais vendido foi o Ingresso tipo Idoso, com {num_tickets_half_old} vendidos!')
-                elif num_promotional_tickets > num_tickets_half_old and num_promotional_tickets > num_tickets_half_student and num_promotional_tickets > num_tickets_full and num_promotional_tickets > num_tickets_vip:
-                    print(f'O ingresso mais vendido foi o Ingresso tipo Promocional, com {num_promotional_tickets} vendidos!')
-                elif num_tickets_vip > num_tickets_half_old and num_tickets_vip > num_tickets_half_student and num_tickets_vip > num_promotional_tickets and num_tickets_vip > num_tickets_full:
-                    print(f'O ingresso mais vendido foi o Ingresso tipo VIP, com {num_tickets_vip} vendidos!')
+                print(f'O ingresso Inteira foi vendido {num_tickets_full} vezes. O ingresso Estudante {num_tickets_half_student} vezes. O ingresso Idoso {num_tickets_half_old} vezes. O ingresso Promocional {num_promotional_tickets} vezes. E o ingresso {num_tickets_vip}')
 
                 if sold_tickets > 0:
 
@@ -258,7 +251,12 @@ while option != '4':
 
                     elif option_vendor_ticket_type == '3':
                             print('\n===== Ingresso Idoso selecionado. Para continuar confirme os dados solicitados! =====')
-                            age = int(input('\nInsira a idade do comprador: '))
+
+                            try:
+                                age = int(input('\nInsira a idade do comprador: '))
+                
+                            except ValueError:
+                                print('\nInsira apenas números!\n')
                             
                             if age >= 60:
                                 print('Ingresso adquirido!')
@@ -274,7 +272,13 @@ while option != '4':
 
                     elif option_vendor_ticket_type == '4':
                             print('\n===== Ingresso Promocional selecionado. Para continuar confirme os dados solicitados! =====')
-                            age = int(input('\nInsira a idade do comprador: '))
+
+                            try:
+                                age = int(input('\nInsira a idade do comprador: '))
+                
+                            except ValueError:
+                                print('\nInsira apenas números!\n')
+                                breakpoint
 
                             if age < 16:
                                  print('\nA idade minima é de 16 anos.')
@@ -294,14 +298,21 @@ while option != '4':
 
                     elif option_vendor_ticket_type == '5':
                             print('\n===== Ingresso VIP selecionado. Para continuar confirme os dados solicitados! =====')
-                            age = int(input('\nInsira a idade do comprador: '))
+
+                            try:
+                                age = int(input('\nInsira a idade do comprador: '))
+                
+                            except ValueError:
+                                print('\nInsira apenas números!\n')
+                                breakpoint
+
                             vip_password_confirm = str(input('\nInsira o código VIP: '))
 
                             if vip_password_confirm == vip_password:
                                  print('\nIngresso adquirido!')
                                  total_age += age
                                  num_disponible_tickets -= 1
-                                 num_tickets_reserved -= 1
+                                 num_tickets_vip += 1
                                  num_tickets_sold_by_1 += 1
 
                     elif option_vendor_ticket_type == '6':
@@ -323,7 +334,12 @@ while option != '4':
                     if option_vendor_ticket_type == '1':
                         
                         print('\nIngresso Inteira selecionado. Para continuar confirme os dados solicitados!')
-                        age = int(input('\nInsira a idade do comprador: '))
+
+                        try:
+                            age = int(input('\nInsira a idade do comprador: '))
+                
+                        except ValueError:
+                            print('\nInsira apenas números!\n')
 
                         if age < 16:
                              print('Compra não autorizada. Idade mínima de 16 anos.')
@@ -340,7 +356,14 @@ while option != '4':
                     elif option_vendor_ticket_type == '2':
 
                         print('\n===== Ingresso Estudante selecionado. Para continuar confirme os dados solicitados! =====')
-                        age = int(input('\nInsira a idade do comprador: '))
+
+                        try:
+                            age = int(input('\nInsira a idade do comprador: '))
+                
+                        except ValueError:
+                            print('\nInsira apenas números!\n')
+                            breakpoint
+
                         doc = str(input('\nInsira o número do cartão de estudante (09 dígitos e sem caracteres): '))
 
                         if age < 16 or len(doc) < 9 or len(doc) > 9:
@@ -357,7 +380,12 @@ while option != '4':
 
                     elif option_vendor_ticket_type == '3':
                             print('\n===== Ingresso Idoso selecionado. Para continuar confirme os dados solicitados! =====')
-                            age = int(input('\nInsira a idade do comprador: '))
+
+                            try:
+                                age = int(input('\nInsira a idade do comprador: '))
+                
+                            except ValueError:
+                                print('\nInsira apenas números!\n')
                             
                             if age >= 60:
                                 print('\nIngresso adquirido!')
@@ -373,7 +401,13 @@ while option != '4':
 
                     elif option_vendor_ticket_type == '4':
                             print('\n===== Ingresso Promocional selecionado. Para continuar confirme os dados solicitados! =====')
-                            age = int(input('\nInsira a idade do comprador: '))
+
+                            try:
+                                age = int(input('\nInsira a idade do comprador: '))
+                
+                            except ValueError:
+                                print('\nInsira apenas números!\n')
+
                             promotional_password_confirm = str(input('Insira o código promocional: '))
 
                             if age < 16:
@@ -393,14 +427,20 @@ while option != '4':
 
                     elif option_vendor_ticket_type == '5':
                             print('\n===== Ingresso VIP selecionado. Para continuar confirme os dados solicitados! =====')
-                            age = int(input('\nInsira a idade do comprador: '))
+
+                            try:
+                                age = int(input('\nInsira a idade do comprador: '))
+                
+                            except ValueError:
+                                print('\nInsira apenas números!\n')
+
                             vip_password_confirm = str(input('\nInsira o código VIP: '))
 
                             if vip_password_confirm == vip_password:
                                  print('\nIngresso adquirido!\n')
                                  total_age += age
                                  num_disponible_tickets -= 1
-                                 num_tickets_reserved -= 1
+                                 num_tickets_vip += 1
                                  num_tickets_sold_by_2 += 1
                                  breakpoint
                             
@@ -438,10 +478,15 @@ while option != '4':
         if option_buyer_ticket_type == '1':
             
             print('\nIngresso Inteira selecionado. Para continuar confirme os dados solicitados!')
-            age = int(input('\nInsira a idade do comprador: '))
+
+            try:
+                age = int(input('\nInsira a idade do comprador: '))
+                
+            except ValueError:
+                print('\nInsira apenas números!\n')
 
             if age < 16:
-                    print('===== Compra não autorizada! Idade mínima de 16 anos. =====')
+                    print('===== Compra não autorizada! Idade mínima de 16 anos ou valor inserido inválido. =====')
                     breakpoint
 
             else:     
@@ -470,7 +515,12 @@ while option != '4':
 
         elif option_buyer_ticket_type == '3':
                 print('\n===== Ingresso Idoso selecionado. Para continuar confirme os dados solicitados! =====')
-                age = int(input('\nInsira a idade do comprador: '))
+
+                try:
+                    age = int(input('\nInsira a idade do comprador: '))
+                
+                except ValueError:
+                    print('\nInsira apenas números!\n')
                 
                 if age >= 60:
                     print('\n===== Ingresso adquirido! =====')
@@ -480,34 +530,48 @@ while option != '4':
                     breakpoint
 
                 else:
-                        print('\n===== A idade mínima para este tipo de ingresso é de 60 anos. =====')
+                        print('\n===== A idade mínima para este tipo de ingresso é de 60 anos ou o valor inserido é inválido. =====')
                         breakpoint
 
         elif option_buyer_ticket_type == '4':
                 print('\n===== Ingresso Promocional selecionado. Para continuar confirme os dados solicitados! =====')
-                age = int(input('\nInsira a idade do comprador: '))
+
+                try:
+                    age = int(input('\nInsira a idade do comprador: '))
+                
+                except ValueError:
+                    print('\nInsira apenas números!\n')
+
                 promotional_password_confirm = str(input('Insira o código promocional: '))
 
-                if promotional_password_confirm == promotional_password:
+                if promotional_password_confirm == promotional_password and age >= 16:
                     print('\n===== Ingresso adquirido! =====')
                     total_age += age
                     num_disponible_tickets -= 1
                     num_promotional_tickets += 1
-                    break
+                    breakpoint
                 
                 else:
-                        print('\n===== Código inválido. =====')
+                        print('\n===== Código inválido. Você não possui idade mínima, a idade inserida é inválida ou o código está expirado! =====')
                         breakpoint
 
         elif option_buyer_ticket_type == '5':
                 print('\n===== Ingresso VIP selecionado. Para continuar confirme os dados solicitados! =====')
-                age = int(input('\nInsira a idade do comprador: '))
+
+                try:
+                    age = int(input('\nInsira a idade do comprador: '))
+                
+                except ValueError:
+                    print('\nInsira apenas números!\n')
+
                 vip_password_confirm = str(input('\nInsira o código VIP: '))
 
-                if vip_password_confirm == vip_password:
+                if vip_password_confirm == vip_password and age >= 16:
                         print('\n===== Ingresso adquirido! =====')
                         total_age += age
                         num_disponible_tickets -= 1
+                        num_tickets_vip += 1
+                        breakpoint
 
 
         elif option_buyer_ticket_type == '6':
