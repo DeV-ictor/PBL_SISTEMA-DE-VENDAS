@@ -35,6 +35,8 @@ vendor_password = 'x'
 vip_password = 'vip@pass2024'
 promotional_password = 'ecomp20241'
 
+option = '0'
+
 #INICIALIZAÇÃO DO SISTEMA
 
 
@@ -222,11 +224,11 @@ while option != '4':
                     if option_vendor_ticket_type == '1':
                         
                         print('\nIngresso Inteira selecionado. Para continuar confirme os dados solicitados!')
-                        age = input('\nInsira a idade do comprador: ')
+                        age = int(input('\nInsira a idade do comprador: '))
 
-                        if age is not int or age < 16:
-                                print('A idade inserida deve conter apenas dígitos ou você não possui a idade mínima para compra.')
-                                breakpoint
+                        if age < 16:
+                             print('\nCompra não autorizada. Idade mínima de 16 anos.')
+                             breakpoint
 
                         else:     
                             print('\nIngresso adquirido!')
@@ -239,11 +241,11 @@ while option != '4':
                     elif option_vendor_ticket_type == '2':
 
                         print('\n===== Ingresso Estudante selecionado. Para continuar confirme os dados solicitados! =====')
-                        age = input('\nInsira a idade do comprador: ')
+                        age = int(input('\nInsira a idade do comprador: '))
                         doc = str(input('\nInsira o número do cartão de estudante (09 dígitos e sem caracteres): '))
 
-                        if age < 16 or len(doc) < 9 or len(doc) > 9 or age is not int:
-                                print('\nCompra não autorizada! A idade mínima permitida é de 16 anos, seu documento estava incorreto ou você não inseriu apenas dígitos.')
+                        if age < 16 or len(doc) < 9 or len(doc) > 9:
+                                print('\nCompra não autorizada! A idade mínima permitida é de 16 anos ou seu documento estava incorreto.')
                                 breakpoint
 
                         else:
@@ -256,11 +258,7 @@ while option != '4':
 
                     elif option_vendor_ticket_type == '3':
                             print('\n===== Ingresso Idoso selecionado. Para continuar confirme os dados solicitados! =====')
-                            age = input('\nInsira a idade do comprador: ')
-
-                            if age is not int or age < 60:
-                                print('A idade inserida deve conter apenas dígitos ou você não possui a idade mínima (60 anos) para compra.')
-                                breakpoint
+                            age = int(input('\nInsira a idade do comprador: '))
                             
                             if age >= 60:
                                 print('Ingresso adquirido!')
@@ -276,12 +274,10 @@ while option != '4':
 
                     elif option_vendor_ticket_type == '4':
                             print('\n===== Ingresso Promocional selecionado. Para continuar confirme os dados solicitados! =====')
-                            age = input('\nInsira a idade do comprador: ')
+                            age = int(input('\nInsira a idade do comprador: '))
 
-                            if age is not int or age < 16:
-                                print('A idade inserida deve conter apenas dígitos ou você não possui a idade mínima para compra.')
-                                breakpoint
-
+                            if age < 16:
+                                 print('\nA idade minima é de 16 anos.')
                             promotional_password_confirm = str(input('Insira o código promocional: '))
 
                             if promotional_password_confirm == promotional_password:
@@ -298,12 +294,7 @@ while option != '4':
 
                     elif option_vendor_ticket_type == '5':
                             print('\n===== Ingresso VIP selecionado. Para continuar confirme os dados solicitados! =====')
-                            age = input('\nInsira a idade do comprador: ')
-
-                            if age is not int or age < 16:
-                                print('A idade inserida deve conter apenas dígitos ou você não possui a idade mínima para compra.')
-                                breakpoint
-
+                            age = int(input('\nInsira a idade do comprador: '))
                             vip_password_confirm = str(input('\nInsira o código VIP: '))
 
                             if vip_password_confirm == vip_password:
@@ -332,10 +323,10 @@ while option != '4':
                     if option_vendor_ticket_type == '1':
                         
                         print('\nIngresso Inteira selecionado. Para continuar confirme os dados solicitados!')
-                        age = input('\nInsira a idade do comprador: ')
+                        age = int(input('\nInsira a idade do comprador: '))
 
-                        if age < 16 or age is not int:
-                             print('Compra não autorizada. Idade mínima de 16 anos ou você não inseriu apenas dígitos.')
+                        if age < 16:
+                             print('Compra não autorizada. Idade mínima de 16 anos.')
                              breakpoint
 
                         else:     
@@ -349,11 +340,11 @@ while option != '4':
                     elif option_vendor_ticket_type == '2':
 
                         print('\n===== Ingresso Estudante selecionado. Para continuar confirme os dados solicitados! =====')
-                        age = input('\nInsira a idade do comprador: ')
+                        age = int(input('\nInsira a idade do comprador: '))
                         doc = str(input('\nInsira o número do cartão de estudante (09 dígitos e sem caracteres): '))
 
-                        if age < 16 or len(doc) < 9 or len(doc) > 9 or age is not int:
-                                print('\nCompra não autorizada! A idade mínima permitida é de 16 anos, seu documento estava incorreto ou você não inseriu apenas dígitos.')
+                        if age < 16 or len(doc) < 9 or len(doc) > 9:
+                                print('\nCompra não autorizada! A idade mínima permitida é de 16 anos ou seu documento estava incorreto.')
                                 breakpoint
 
                         else:
@@ -366,11 +357,7 @@ while option != '4':
 
                     elif option_vendor_ticket_type == '3':
                             print('\n===== Ingresso Idoso selecionado. Para continuar confirme os dados solicitados! =====')
-                            age = input('\nInsira a idade do comprador: ')
-
-                            if age is not int or age < 60:
-                                print('A idade inserida deve conter apenas dígitos ou você não possui a idade mínima (60 anos) para compra.')
-                                breakpoint
+                            age = int(input('\nInsira a idade do comprador: '))
                             
                             if age >= 60:
                                 print('\nIngresso adquirido!')
@@ -386,13 +373,11 @@ while option != '4':
 
                     elif option_vendor_ticket_type == '4':
                             print('\n===== Ingresso Promocional selecionado. Para continuar confirme os dados solicitados! =====')
-                            age = input('\nInsira a idade do comprador: ')
-
-                            if age is not int or age < 16:
-                                print('A idade inserida deve conter apenas dígitos ou você não possui a idade mínima para compra.')
-                                breakpoint
-
+                            age = int(input('\nInsira a idade do comprador: '))
                             promotional_password_confirm = str(input('Insira o código promocional: '))
+
+                            if age < 16:
+                                 print('\nA idade mínima é de 16 anos.')
 
                             if promotional_password_confirm == promotional_password:
                                 print('\nIngresso adquirido!')
@@ -408,12 +393,7 @@ while option != '4':
 
                     elif option_vendor_ticket_type == '5':
                             print('\n===== Ingresso VIP selecionado. Para continuar confirme os dados solicitados! =====')
-                            age = input('\nInsira a idade do comprador: ')
-
-                            if age is not int or age < 16:
-                                print('A idade inserida deve conter apenas dígitos ou você não possui a idade mínima para compra.')
-                                breakpoint
-
+                            age = int(input('\nInsira a idade do comprador: '))
                             vip_password_confirm = str(input('\nInsira o código VIP: '))
 
                             if vip_password_confirm == vip_password:
@@ -458,11 +438,11 @@ while option != '4':
         if option_buyer_ticket_type == '1':
             
             print('\nIngresso Inteira selecionado. Para continuar confirme os dados solicitados!')
-            age = input('\nInsira a idade do comprador: ')
+            age = int(input('\nInsira a idade do comprador: '))
 
-            if age is not int or age < 16:
-                print('A idade inserida deve conter apenas dígitos ou você não possui a idade mínima para compra.')
-                breakpoint
+            if age < 16:
+                    print('===== Compra não autorizada! Idade mínima de 16 anos. =====')
+                    breakpoint
 
             else:     
                 print('\n===== Ingresso adquirido! =====')
@@ -474,11 +454,11 @@ while option != '4':
         elif option_buyer_ticket_type == '2':
 
             print('\n===== Ingresso Estudante selecionado. Para continuar confirme os dados solicitados! =====')
-            age = input('\nInsira a idade do comprador: ')
+            age = int(input('\nInsira a idade do comprador: '))
             doc = str(input('\nInsira o número do cartão de estudante (09 dígitos e sem caracteres): '))
 
-            if age < 16 or len(doc) < 9 or len(doc) > 9 or age is not int:
-                    print('\nCompra não autorizada! A idade mínima permitida é de 16 anos, seu documento estava incorreto ou não foram inseridos apenas dígitos.')
+            if age < 16 or len(doc) < 9 or len(doc) > 9:
+                    print('\nCompra não autorizada! A idade mínima permitida é de 16 anos ou seu documento estava incorreto.')
                     breakpoint
 
             else:
@@ -490,27 +470,22 @@ while option != '4':
 
         elif option_buyer_ticket_type == '3':
                 print('\n===== Ingresso Idoso selecionado. Para continuar confirme os dados solicitados! =====')
-                age = input('\nInsira a idade do comprador: ')
-
-                if age is not int or age < 60:
-                    print('A idade inserida deve conter apenas dígitos ou você não possui a idade mínima (60 anos) para compra.')
-                    breakpoint
+                age = int(input('\nInsira a idade do comprador: '))
                 
-                else:
+                if age >= 60:
                     print('\n===== Ingresso adquirido! =====')
                     total_age += age
                     num_disponible_tickets -= 1
                     num_tickets_half_old += 1
                     breakpoint
 
+                else:
+                        print('\n===== A idade mínima para este tipo de ingresso é de 60 anos. =====')
+                        breakpoint
+
         elif option_buyer_ticket_type == '4':
                 print('\n===== Ingresso Promocional selecionado. Para continuar confirme os dados solicitados! =====')
-                age = (input('\nInsira a idade do comprador: '))
-
-                if age is not int or age < 16:
-                    print('A idade inserida deve conter apenas dígitos ou você não possui a idade mínima para compra.')
-                    breakpoint
-
+                age = int(input('\nInsira a idade do comprador: '))
                 promotional_password_confirm = str(input('Insira o código promocional: '))
 
                 if promotional_password_confirm == promotional_password:
@@ -526,12 +501,7 @@ while option != '4':
 
         elif option_buyer_ticket_type == '5':
                 print('\n===== Ingresso VIP selecionado. Para continuar confirme os dados solicitados! =====')
-                age = (input('\nInsira a idade do comprador: '))
-
-                if age is not int or age < 16:
-                    print('A idade inserida deve conter apenas dígitos ou você não possui a idade mínima para compra.')
-                    breakpoint
-
+                age = int(input('\nInsira a idade do comprador: '))
                 vip_password_confirm = str(input('\nInsira o código VIP: '))
 
                 if vip_password_confirm == vip_password:
