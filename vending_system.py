@@ -14,8 +14,6 @@
 num_total_tickets = 2000
 num_tickets_vip = 0
 
-num_disponible_tickets = num_total_tickets
-
 #Precificação
 price_tickets_with_discount = 10.00           
 price_tickets_full = 30.00
@@ -49,6 +47,7 @@ vip_password = 'vip@pass2024'
 promotional_password = 'ecomp20241'
 
 #Variáveis de inicialização
+
 option = '0'
 age = 0
 minimun_age = 16
@@ -63,10 +62,11 @@ collection_promotional = 0
 
 #INICIALIZAÇÃO DO SISTEMA
 
-
 print('Sistema iniciando...\n')
 
 while option != '4':
+
+    num_disponible_tickets = num_total_tickets - (sold_tickets + num_tickets_courtesy_1 + num_tickets_courtesy_2 + num_tickets_courtesy_3)
 
     print('\n===== SELECIONE O TIPO DE ACESSO =====\n')
     print('[1] - Gerenciador')
@@ -94,8 +94,6 @@ while option != '4':
             
                 try:
                     num_total_tickets = int(input('\nDefina a quantidade de ingressos totais: '))
-
-                    aditional_tickets = int(input('\nDefina a quantidade de ingressos adicionais: '))
 
                     num_tickets_reserved = int(input('\nDefina a quantidade de ingressos reservados: '))
 
@@ -134,8 +132,9 @@ while option != '4':
                 #Tipo de ingresso mais vendido
 
                 most_sold_ticket = max(num_tickets_full, num_tickets_half_student, num_tickets_half_old, num_promotional_tickets, num_tickets_vip)
-                 
-                print(f'\n[Ingressos emitidos - {sold_tickets + num_tickets_courtesy_1 + num_tickets_courtesy_2 + num_tickets_courtesy_3}]')
+                
+                print(f'\n[Ingressos totais - {sold_tickets + num_tickets_courtesy_1 + num_tickets_courtesy_2 + num_tickets_courtesy_3 + unsold_tickets}]')
+                print(f'[Ingressos emitidos - {sold_tickets + num_tickets_courtesy_1 + num_tickets_courtesy_2 + num_tickets_courtesy_3}]')
                 print(f'[Ingressos não emitidos - {unsold_tickets}]\n')
 
                 print('=' * 40, '\n')
@@ -239,7 +238,8 @@ while option != '4':
 
         vendor_password_confirm = str(input('\nInsira a senha para continuar: '))
 
-        while num_disponible_tickets != 0:
+        while num_disponible_tickets > 0:
+
             if vendor_password_confirm == vendor_password:
                 
                 print('\n===== TIPO DE COMISSÃO =====')
@@ -282,7 +282,7 @@ while option != '4':
                             sold_tickets += 1
                             num_tickets_full += 1
                             num_tickets_sold_by_1 += 1
-                            break
+                            breakpoint
 
                     elif option_vendor_ticket_type == '2':
 
@@ -306,7 +306,7 @@ while option != '4':
                             sold_tickets += 1
                             num_tickets_half_student += 1
                             num_tickets_sold_by_1 += 1
-                            break  
+                            breakpoint
 
                     elif option_vendor_ticket_type == '3':
                             print('\n===== Ingresso Idoso selecionado. Para continuar confirme os dados solicitados! =====')
@@ -323,7 +323,7 @@ while option != '4':
                                 sold_tickets += 1
                                 num_tickets_half_old += 1
                                 num_tickets_sold_by_1 += 1
-                                break
+                                breakpoint
 
                             else:
                                 print('\nA idade mínima para este tipo de ingresso é de 60 anos.')
@@ -350,7 +350,7 @@ while option != '4':
                                 sold_tickets += 1
                                 num_promotional_tickets += 1
                                 num_tickets_sold_by_1 += 1
-                                break
+                                breakpoint
                             
                             else:
                                 print('\n===== Você não possui idade mínima, a idade inserida é inválida ou o código está expirado! =====')
@@ -419,7 +419,7 @@ while option != '4':
                             sold_tickets += 1
                             num_tickets_full += 1
                             num_tickets_sold_by_2 += 1
-                            break
+                            breakpoint
 
                     elif option_vendor_ticket_type == '2':
 
@@ -443,7 +443,7 @@ while option != '4':
                             sold_tickets += 1
                             num_tickets_half_student += 1
                             num_tickets_sold_by_2 += 1
-                            break  
+                            breakpoint
 
                     elif option_vendor_ticket_type == '3':
                             print('\n===== Ingresso Idoso selecionado. Para continuar confirme os dados solicitados! =====')
@@ -460,7 +460,7 @@ while option != '4':
                                 sold_tickets += 1
                                 num_tickets_half_old += 1
                                 num_tickets_sold_by_2 += 1
-                                break
+                                breakpoint
 
                             else:
                                 print('\nA idade mínima para este tipo de ingresso é de 60 anos.')
@@ -668,16 +668,18 @@ while option != '4':
         elif option_buyer_ticket_type == '6':
             breakpoint
         
-        elif option == '4':
-            pass
+    elif option == '4':
+        pass
 
     else:
         print('\n--- A opção selecionada não existe ou os ingressos estão esgotados. ---')
         breakpoint
 
-print('Sistema encerrado. Gerando resultados...')
+print('\nSistema encerrado. Gerando resultados...\n')
 
 #ATUALIZAÇÃO DOS DADOS
+
+#Ingressos emitidos e não emitidos
 
 num_disponible_tickets = num_total_tickets - (sold_tickets + num_tickets_courtesy_1 + num_tickets_courtesy_2 + num_tickets_courtesy_3)
 unsold_tickets = num_disponible_tickets
@@ -686,14 +688,19 @@ num_tickets_courtesy_1 = num_tickets_sold_by_1 // 10 #Cortesias para Tipo 1 (Bio
 num_tickets_courtesy_2 = num_tickets_sold_by_2 // 10 #Cortesias para Tipo 2 (Enfermagem)
 num_tickets_courtesy_3 = num_tickets_sold_by_3 // 10 #Cortesias para Tipo 3 (não definido)
 
+#Arrecadação por tipo de ingressos
+
 collection_full = price_tickets_full * num_tickets_full
 collection_half_student = price_tickets_half * num_tickets_half_student
 collection_half_old = price_tickets_half * num_tickets_half_old
 collection_promotional = price_tickets_with_discount * num_promotional_tickets
 
+#Tipo de ingresso mais vendido
+
 most_sold_ticket = max(num_tickets_full, num_tickets_half_student, num_tickets_half_old, num_promotional_tickets, num_tickets_vip)
 
-print(f'\n[Ingressos emitidos - {sold_tickets + num_tickets_courtesy_1 + num_tickets_courtesy_2 + num_tickets_courtesy_3}]')
+print(f'\n[Ingressos totais - {sold_tickets + num_tickets_courtesy_1 + num_tickets_courtesy_2 + num_tickets_courtesy_3 + unsold_tickets}]')
+print(f'[Ingressos emitidos - {sold_tickets + num_tickets_courtesy_1 + num_tickets_courtesy_2 + num_tickets_courtesy_3}]')
 print(f'[Ingressos não emitidos - {unsold_tickets}]\n')
 
 print('=' * 40, '\n')
@@ -723,22 +730,22 @@ print(f'[Arrecadação do tipo Estudante] - R${collection_half_student:.2f}')
 print(f'[Arrecadação do tipo Idoso] - R${collection_half_old:.2f}')
 print(f'[Arrecadação do tipo Promocional] - R${collection_promotional:.2f}\n')
 
-print(f'[Arrecadação Total] - R${(collection_full + collection_half_old + collection_half_student + collection_promotional):.2f}\n')
+print(f'[Arrecadação Total] - R${(price_tickets_full * num_tickets_full) + (price_tickets_half * num_tickets_half_old) + (price_tickets_half * num_tickets_half_student) + (price_tickets_with_discount * num_promotional_tickets):.2f}\n')
 
 print('=' * 40, '\n')
 
 if most_sold_ticket == 0:
     print('Nenhum ingresso foi vendido até o momento.')
 elif num_tickets_full == most_sold_ticket:
-    print(f'O ingresso Inteira foi o mais vendido, com {most_sold_ticket} vendas!')
+    print(f'O ingresso Inteira foi o mais vendido, com {most_sold_ticket} vendas!\n')
 elif num_tickets_half_student == most_sold_ticket:
-    print(f'O ingresso Estudante foi o mais vendido, com {most_sold_ticket} vendas!')
+    print(f'O ingresso Estudante foi o mais vendido, com {most_sold_ticket} vendas!\n')
 elif num_tickets_half_old == most_sold_ticket:
-    print(f'O ingresso Idoso foi o mais vendido, com {most_sold_ticket} vendas!')
+    print(f'O ingresso Idoso foi o mais vendido, com {most_sold_ticket} vendas!\n')
 elif num_tickets_vip == most_sold_ticket:
-    print(f'O ingresso VIP foi o mais vendido, com {most_sold_ticket} vendas!')
+    print(f'O ingresso VIP foi o mais vendido, com {most_sold_ticket} vendas!\n')
 elif num_promotional_tickets == most_sold_ticket:
-    print(f'O ingresso Promocional foi o mais vendido, com {most_sold_ticket} vendas!')
+    print(f'O ingresso Promocional foi o mais vendido, com {most_sold_ticket} vendas!\n')
 
 if sold_tickets > 0:
 
